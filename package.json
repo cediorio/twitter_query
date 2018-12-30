@@ -19,7 +19,6 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "moment": "^2.23.0",
-    "node-twitter": "^0.5.3",
     "twitter": "^1.7.1"
   }
 }
