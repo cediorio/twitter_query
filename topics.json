@@ -1,0 +1,136 @@
+{
+    "name": "root",
+    "children": [
+        {
+            "name":"Artificial Intelligence",
+            "parent": ""
+        },
+        {
+            "name": "Multi-Agent Systems",
+            "parent": "Artificial Intelligence"
+        },
+        {
+            "name": "Evolutionary Computation",
+            "parent": "Artificial Intelligence",
+            "links": [
+	        {
+                    "name": "Evolutionary Computation",
+                    "url":"https://en.wikipedia.org/wiki/Evolutionary_computation"
+	        }
+            ]
+        },
+        { "name": "Speech Recognition",
+          "parent": "Artificial Intelligence",
+          "query": "\"Speech Recognition\""
+        },
+        { 
+            "name": "Speech-to-Text",
+            "parent": "Speech Recognition"
+        },      
+        { 
+            "name": "Computer Vision",
+            "parent": "Artificial Intelligence",
+            
+            "query": "\"Computer Vision\""
+        },
+        { 
+            "name": "Image Recognition",
+            "parent": "Computer Vision"},    
+        { 
+            "name": "Machine Vision",
+            "parent": "Computer Vision"},
+        { 
+            "name": "Feature Detection",
+            "parent": "Computer Vision"
+        },
+        { 
+            "name": "Expert Systems",
+            "parent": "Artificial Intelligence",
+            
+            "query": "\"Expert Systems\""
+        },
+        {
+            "name":"Natural Language Processing", 
+            "parent": "Artificial Intelligence",
+            "query": "NLP | #NaturalLanguageProcessing | #NLP | \"natural language processing\"",
+            "desc": "Turning language and text into structured data."
+        },
+        {
+            "name": "Machine Translation",
+            "parent": "Natural Language Processing"
+        },
+        {
+            "name": "Textual Entailment",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Coreference Resolution",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Sentiment Analysis",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Named Entity Recognition",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Part-Of-Speech Tagging",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Syntactic Parsing",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Text Categorization",
+            "parent": "Natural Language Processing"},
+        {
+            "name": "Natural Language Understanding",
+            "parent": "Natural Language Processing", 
+            "desc": "Understanding the meaning of input."
+        },
+        {
+            "name": "Paraphrase & Natural Language Inference",
+            "parent": "Natural Language Understanding"},
+        {
+            "name": "Dialogues/Agents/Chatbots",
+            "parent": "Natural Language Understanding"},
+        {
+            "name": "Semantic Parsing",
+            "parent": "Natural Language Understanding"},
+        {
+            "name": "Summarization",
+            "parent": "Natural Language Understanding"},
+        {
+            "name": "Question Answering",
+            "parent": "Natural Language Understanding",
+            "query": "(\"question answering\" NLP)"
+        },
+        {
+            "name": "Reading Comprehension",
+            "parent": "Natural Language Understanding",
+            "query": "(\"reading comprehension\" NLP)"
+        },
+
+        {
+            "name": "Sentiment Analysis",
+            "parent": "Natural Language Understanding"},
+        {
+            "name": "Natural Language Generation",
+            "parent": "Natural Language Processing"
+        },
+        {
+            "name": "Machine Learning",
+            "parent": "Artificial Intelligence",
+            "query": "#ML | #machinelearning"
+        },
+        {
+            "name": "Deep Learning",
+            "parent": "Machine Learning"
+        },
+        {
+            "name": "Supervised",
+            "parent": "Machine Learning"
+        },
+        {      
+            "name": "Unsupervised",
+            "parent": "Machine Learning"
+        }
+    ]
+}

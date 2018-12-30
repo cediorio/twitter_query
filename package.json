@@ -1,0 +1,24 @@
+{
+  "name": "data_scraping",
+  "version": "1.0.0",
+  "description": "twitter search for ai terms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --inspect-brk index.js"
+  },
+  "keywords": [
+    "twitter",
+    "api",
+    "search",
+    "ai",
+    "node"
+  ],
+  "author": "Chris D'Iorio",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "moment": "^2.23.0",
+    "node-twitter": "^0.5.3",
+    "twitter": "^1.7.1"
+  }
+}
