@@ -1,16 +1,20 @@
 'use strict';
 
 require('dotenv').config();
-const path = require('path');
-const fs = require('fs');
+const fh = require('./file_handling.js')
 const moment = require('moment');
 const Twitter = require('twitter');
 
+/***
+class TwitterQuery
+Takes a file with a list of topics
+***/
 function TwitterQuery(file) {
     this.topics = {};
-    this.topicsFile = file;
+    this.topicsFile = process.env.TOPICS_FILENAME;
     this.nodes = new Array();
-    this.searchPeriod = 7; // max 7 according to Twitter API
+    this.cumulativeResults = new Array();
+    this.searchPeriod = this.getSearchPeriod(this.getCumulativeResults(process.env.CUMULATIVE_RESULTS_FILENAME));
     this.searchDate =  moment().subtract(this.searchPeriod,'d').format('YYYY-MM-DD');
     this.location = {
         "Toronto": "43.666667,-79.416667,40km"
@@ -23,9 +27,32 @@ function TwitterQuery(file) {
     });
 }
 
+TwitterQuery.prototype.getSearchPeriod = function(cumulResults) {
+    // accepts a json file (the cumulative results file)
+    // return the number of days between the last search date (taken
+    // from the cumulative results file) and the date the script is run
+    let lastSearchDate;
+    let maxTwitterAPISearchPeriod = 7;
+
+    let dates = cumulResults.map(d => d.fetchDate);
+    lastSearchDate = dates.reduce((a,b) => a > b ? a : b);
+    let mFromDate = moment(lastSearchDate, 'YYYY-MM-DD');
+    let mEndDate = moment();
+    return Math.min(mEndDate.diff(mFromDate, 'days'), maxTwitterAPISearchPeriod);
+}
+
+
+TwitterQuery.prototype.getCumulativeResults = function(file) {
+    try {
+	return JSON.parse(fh.getFile(file));
+    } catch (err) {
+	throw(`There was an error opening ${file}: ${err.message}`);
+    }
+}
+
 TwitterQuery.prototype.readTopics = function() {
     try{
-        this.topics = JSON.parse(fs.readFileSync(path.resolve(__dirname,this.topicsFile)));
+        this.topics = JSON.parse(fh.getFile(this.topicsFile));
     }
     catch (err) {
         throw(`There was an error reading the topics file: ${err.message}`);
@@ -43,10 +70,12 @@ TwitterQuery.prototype.setNodes = function() {
     }
     this.topics.children.forEach(i => {
         let query = i.query ? i.query : `\"${i.name}\"`;
+	let fetchDate =  moment().format('YYYY-MM-DD');
         this.nodes.push({ 
             id: i.name, 
             parentId: i.parent,
-            query: query
+            query: query,
+	    fetchDate: fetchDate
         });
     });
     return true;
@@ -88,34 +117,29 @@ TwitterQuery.prototype.query = function() {
                 .catch( function(error){
                     console.log(error);
                 })
-        )
+        );
+
+	// push a promise to get the cumulative results
+	promises.push(this.cumulativeResults = this.getCumulativeResults(process.env.CUMULATIVE_RESULTS_FILENAME));
     })
 
+    // see here: https://stackoverflow.com/questions/34930771/why-is-this-undefined-inside-class-method-when-using-promises
     let that = this;
 
-    Promise.all(promises).then( function() {
-        let nodesFile = `queryResult-${moment().format('YYYY-MM-DD')}.json`
-        console.log("All Twitter queries done. Writing nodes to file...")
-	let copiedFilePath = 'ai_twitter_activity.json';
+    Promise.all(promises)
+	.then( function() {
+	    that.cumulativeResults = that.cumulativeResults.concat(that.nodes);
+	})
+	.then( function() {
+            let nodesFile = `queryResult-${moment().format('YYYY-MM-DD')}.json`
+            console.log("All Twitter queries done. Writing nodes to file...")
+	    console.log(process.env.CUMULATIVE_RESULTS_FILENAME + "<-----");
+	    fh.writeResults(that.nodes, that.cumulativeResults, nodesFile, process.env.CUMULATIVE_RESULTS_FILENAME);
 
-        fs.writeFile(nodesFile, JSON.stringify(that.nodes), (err) => {
-            if (err) throw err;
-            console.log(`${nodesFile} successfully written.`)
-
-	    fs.copyFile(nodesFile, copiedFilePath, (err) => {
-		if (err) throw err;
-		console.log(`${nodesFile} was copied to ${copiedFilePath}
-		remember to now push to git`);
-	    });
-
-	}); // see here: https://stackoverflow.com/questions/34930771/why-is-this-undefined-inside-class-method-when-using-promises
-
-	
- 
-    })
-    .catch((error) => {
-        console.log('Error: ', error)
-    });
+	})
+	.catch((error) => {
+            console.log('Error: ', error)
+	});
 
 
 }
