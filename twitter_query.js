@@ -1,4 +1,6 @@
 'use strict';
+
+require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
 const moment = require('moment');
@@ -14,10 +16,10 @@ function TwitterQuery(file) {
         "Toronto": "43.666667,-79.416667,40km"
     };
     this.client = new Twitter({
-        consumer_key: 'apNzL0jsvZLpu4IGetwqlkIta',
-        consumer_secret: 'axdKqV7c423zok83ddBCssRlBAMjnSeFyg6Jvp7LedTqpihqGX',
-        access_token_key: '15243211-Qz8ws3BTJ30VhUjd8zClcn37WaNA73EUSIuJ6DPE6',
-        access_token_secret: 'bsARTXzLu46B6fLNtXcOjj6vxljAVBq30wd8D6R1XqYGi'    
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET    
     });
 }
 
@@ -100,12 +102,12 @@ TwitterQuery.prototype.query = function() {
             console.log(`${nodesFile} successfully written.`)
         }); // see here: https://stackoverflow.com/questions/34930771/why-is-this-undefined-inside-class-method-when-using-promises
 
-	let copiedFilePath = '7f3b387af177ed2ef344ad8c88ea8b82'+'/'+'ai_twitter_activity.json';
+	let copiedFilePath = 'ai_twitter_activity.json';
 	
 	fs.copyFile(nodesFile, copiedFilePath, (err) => {
 	    if (err) throw err;
 	    console.log(`${nodesFile} was copied to ${copiedFilePath}
-		remember to now push to gitgist from the 7f3b387af177ed2ef344ad8c88ea8b82 directory`);
+		remember to now push to git`);
 	});
  
     })
