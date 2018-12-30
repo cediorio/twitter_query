@@ -96,19 +96,21 @@ TwitterQuery.prototype.query = function() {
     Promise.all(promises).then( function() {
         let nodesFile = `queryResult-${moment().format('YYYY-MM-DD')}.json`
         console.log("All Twitter queries done. Writing nodes to file...")
+	let copiedFilePath = 'ai_twitter_activity.json';
 
         fs.writeFile(nodesFile, JSON.stringify(that.nodes), (err) => {
             if (err) throw err;
             console.log(`${nodesFile} successfully written.`)
-        }); // see here: https://stackoverflow.com/questions/34930771/why-is-this-undefined-inside-class-method-when-using-promises
 
-	let copiedFilePath = 'ai_twitter_activity.json';
-	
-	fs.copyFile(nodesFile, copiedFilePath, (err) => {
-	    if (err) throw err;
-	    console.log(`${nodesFile} was copied to ${copiedFilePath}
+	    fs.copyFile(nodesFile, copiedFilePath, (err) => {
+		if (err) throw err;
+		console.log(`${nodesFile} was copied to ${copiedFilePath}
 		remember to now push to git`);
-	});
+	    });
+
+	}); // see here: https://stackoverflow.com/questions/34930771/why-is-this-undefined-inside-class-method-when-using-promises
+
+	
  
     })
     .catch((error) => {
