@@ -2,3 +2,4 @@
 query*.json
 *~
 *.env
+*.bak
