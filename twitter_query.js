@@ -86,7 +86,7 @@ TwitterQuery.prototype.query = function() {
         try {
             this.setNodes();
         } catch (err) {
-            throw new Error("Call to setNodes failed.")
+            throw new Error(`Call to setNodes failed: ${err.message}`)
         }
     }
 

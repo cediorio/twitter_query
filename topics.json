@@ -2,7 +2,7 @@
     "name": "root",
     "children": [
         {
-            "name":"Artificial Intelligence",
+            "name":"Artificial Intelligence | #AI | #ArtificialIntelligence",
             "parent": ""
         },
         {
@@ -57,11 +57,14 @@
         },
         {
             "name": "Machine Translation",
-            "parent": "Natural Language Processing"
+            "parent": "Natural Language Processing",
+	    "query": "(Machine Translation | #machinetranslation)"
         },
         {
             "name": "Textual Entailment",
-            "parent": "Natural Language Processing"},
+            "parent": "Natural Language Processing",
+	    "query": "Textual Entailment"
+	},
         {
             "name": "Coreference Resolution",
             "parent": "Natural Language Processing"},
@@ -111,26 +114,36 @@
         {
             "name": "Sentiment Analysis",
             "parent": "Natural Language Understanding"},
+	
         {
             "name": "Natural Language Generation",
-            "parent": "Natural Language Processing"
+            "parent": "Natural Language Processing",
+	    "query": "Natural Language Generation (#NaturalLanguageGeneration | \"Natural Language Processing\" | #NLP | NLP)"
         },
         {
             "name": "Machine Learning",
             "parent": "Artificial Intelligence",
-            "query": "#ML | #machinelearning"
+            "query": "Machine Learning (#ML | #machinelearning)"
         },
         {
             "name": "Deep Learning",
-            "parent": "Machine Learning"
+            "parent": "Machine Learning",
+	    "query": "Deep Learning (#deeplearning | #MachineLearning | #ML)"
         },
         {
-            "name": "Supervised",
-            "parent": "Machine Learning"
+	    "name": "Supervised Learning",
+            "parent": "Machine Learning",
+            "query": "Supervised Learning (#Supervised Learning | #MachineLearning | #ML)"		      
         },
         {      
-            "name": "Unsupervised",
-            "parent": "Machine Learning"
+            "name": "Unsupervised Learning",
+            "parent": "Machine Learning",
+	    "query": "Unsupervised Learning (#UnSupervisedLearning | #MachineLearning | #ML)"
+        },
+        {
+	    "name": "Generative Adversarial Networks",
+            "parent": "Machine Learning",
+            "query": "(Generative Adversarial Networks | #GANs) (#MachineLearning | #ML)"		      
         }
     ]
 }
