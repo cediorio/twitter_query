@@ -2,8 +2,9 @@
     "name": "root",
     "children": [
         {
-            "name":"Artificial Intelligence | #AI | #ArtificialIntelligence",
-            "parent": ""
+            "name":"Artificial Intelligence",
+            "parent": "",
+	    "query": "Artificial Intelligence | #AI | #ArtificialIntelligence"
         },
         {
             "name": "Multi-Agent Systems",
