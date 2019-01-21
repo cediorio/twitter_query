@@ -86,7 +86,7 @@
             "name": "Paraphrase & Natural Language Inference",
             "parent": "Natural Language Understanding"},
         {
-            "name": "Dialogues/Agents/Chatbots",
+            "name": "Chatbots",
             "parent": "Natural Language Understanding"},
         {
             "name": "Semantic Parsing",
