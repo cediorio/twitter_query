@@ -135,7 +135,7 @@
 	    "query": "Unsupervised Learning (#UnSupervisedLearning | #MachineLearning | #ML)"
         },
         {
-	    "name": "Generative Adversarial Networks",
+	    "name": "Generative Adversarial Network",
             "parent": "Machine Learning",
             "query": "(Generative Adversarial Networks | #GANs) (#MachineLearning | #ML)"		      
         }
