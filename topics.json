@@ -4,7 +4,8 @@
         {
             "name":"Artificial Intelligence",
             "parent": "",
-	    "query": "Artificial Intelligence | #AI | #ArtificialIntelligence"
+	    "query": "Artificial Intelligence | #AI | #ArtificialIntelligence",
+	    "desc": "
         },
         {
             "name": "Multi-Agent Systems",
@@ -68,9 +69,6 @@
 	},
         {
             "name": "Coreference Resolution",
-            "parent": "Natural Language Processing"},
-        {
-            "name": "Sentiment Analysis",
             "parent": "Natural Language Processing"},
         {
             "name": "Named Entity Recognition",
