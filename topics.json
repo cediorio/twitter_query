@@ -4,8 +4,7 @@
         {
             "name":"Artificial Intelligence",
             "parent": "",
-	    "query": "Artificial Intelligence | #AI | #ArtificialIntelligence",
-	    "desc": "
+	    "query": "Artificial Intelligence | #AI | #ArtificialIntelligence"
         },
         {
             "name": "Multi-Agent System",
