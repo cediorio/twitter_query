@@ -1,5 +1,6 @@
 /node_modules
 query*.json
+topics.json
 *~
 *.env
 *.bak
